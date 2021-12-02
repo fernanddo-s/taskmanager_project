@@ -9,3 +9,14 @@
     margin: 8px 0;
     padding: 20px 15px;
 }
+
+.task_title {
+    cursor: pointer;
+}
+
+.remove_task_button {
+    background-color: #444444;
+    border: none;
+    color: chartreuse;
+    cursor: pointer;
+}
