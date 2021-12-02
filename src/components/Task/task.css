@@ -19,4 +19,13 @@
     border: none;
     color: chartreuse;
     cursor: pointer;
+    font-size: 22px;
+}
+
+.see_task_details_button {
+    background-color: #444444;
+    border: none;
+    color: chartreuse;
+    cursor: pointer;
+    font-size: 22px;
 }
