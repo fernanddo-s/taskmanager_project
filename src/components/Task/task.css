@@ -14,18 +14,18 @@
     cursor: pointer;
 }
 
-.remove_task_button {
-    background-color: #444444;
-    border: none;
-    color: chartreuse;
-    cursor: pointer;
-    font-size: 22px;
-}
-
+.remove_task_button,
 .see_task_details_button {
     background-color: #444444;
     border: none;
     color: chartreuse;
     cursor: pointer;
     font-size: 22px;
+    margin: 0 5px;
+}
+
+.buttons_container {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
 }
