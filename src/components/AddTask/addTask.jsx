@@ -10,8 +10,11 @@ const AddTask = ({ handleTaskAddition }) => {
   };
 
   const handleAddTaskClick = () => {
-    handleTaskAddition(inputData);
-    setInputData("");
+    if ((inputData == null) | (inputData == "")) {
+      alert("Não é possível adicionar uma tarefa vazia!");
+    } else {
+      handleTaskAddition(inputData);
+    }
   };
 
   return (
