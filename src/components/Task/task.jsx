@@ -1,13 +1,13 @@
 import React from "react";
 import "./task.css";
 import { CgClose, CgInfo } from "react-icons/cg";
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Task = ({ task, handleTaskClick, handleTaskDeletion }) => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleTaskDetsilsClick = () => {
-        history.push(`${task.title}`)
+        navigate.push(`${task.title}`)
     }
 
     return (
