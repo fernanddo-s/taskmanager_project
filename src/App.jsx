@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import axios from "axios";
 
 import "./App.css";
 import AddTask from "./components/AddTask/addTask";
@@ -10,73 +10,81 @@ import Tasks from "./components/Tasks/tasks";
 import TaskDetails from "./components/TaskDetails/taskDetails";
 
 const App = () => {
-	const [tasks, setTask] = useState([
-		{
-			id: 1,
-			title: "Estudar programação",
-			completed: false,
-		},
-		{
-			id: 2,
-			title: "Ler livros",
-			completed: true,
-		},
-	]);
+  const [tasks, setTask] = useState([
+    {
+      id: 1,
+      title: "Estudar programação",
+      completed: false,
+    },
+    {
+      id: 2,
+      title: "Ler livros",
+      completed: true,
+    },
+  ]);
 
-	useEffect(() => {
-		const fetchTasks = async () => {
-			const {data} = await axios.get("https://jsonplaceholder.cypress.io/todos_?limit=10");
-			setTask(data);
-		};
-		fetchTasks();
-	}, []);
+  // useEffect(() => {
+  //   const fetchTasks = async () => {
+  //     const { data } = await axios.get(
+  //       "https://jsonplaceholder.typicode.com/todos"
+  //     );
+  //     setTask(data);
+  //     console.log(tasks)
+  //   };
+  //   fetchTasks();
+  // }, []);
 
-	const handleTaskClick = (taskId) => {
-		const newTasks = tasks.map((task) => {
-			if (task.id === taskId) return { ...task, completed: !task.completed };
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === taskId) return { ...task, completed: !task.completed };
 
-			return task;
-		});
+      return task;
+    });
 
-		setTask(newTasks);
-	};
+    setTask(newTasks);
+  };
 
-	const handleTaskAddition = (taskTitle) => {
-		const newTasks = [
-			...tasks,
-			{
-				title: taskTitle,
-				id: uuidv4(),
-				completed: false,
-			},
-		];
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [
+      ...tasks,
+      {
+        title: taskTitle,
+        id: uuidv4(),
+        completed: false,
+      },
+    ];
 
-		setTask(newTasks);
-	};
+    setTask(newTasks);
+  };
 
-	const handleTaskDeletion = (taskId) => {
-		const newTasks = tasks.filter((task) => task.id !== taskId);
-		setTask(newTasks);
-	};
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter((task) => task.id !== taskId);
+    setTask(newTasks);
+  };
 
-	return (
-		<Router>
-			<div className="container">
-				<Header />
-				<Route  path="/" exact render={() => (
-					<>
-						<AddTask handleTaskAddition={handleTaskAddition} />
-						<Tasks
-							tasks={tasks}
-							handleTaskClick={handleTaskClick}
-							handleTaskDeletion={handleTaskDeletion}
-						/>
-					</>
-				)} />
-				<Route path="/:taskTitle" exact component={TaskDetails} />
-			</div>
-		</Router>
-	);
+  return (
+    <Router>
+      <div className="container">
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <AddTask handleTaskAddition={handleTaskAddition} />
+                <Tasks
+                  tasks={tasks}
+                  handleTaskClick={handleTaskClick}
+                  handleTaskDeletion={handleTaskDeletion}
+                />
+              </>
+            }
+          />
+          <Route path="/:taskTitle" exact component={TaskDetails} />
+        </Routes>
+      </div>
+    </Router>
+  );
 };
 
 export default App;
