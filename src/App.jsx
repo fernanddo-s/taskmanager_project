@@ -21,18 +21,17 @@ const App = () => {
       title: "Ler livros",
       completed: true,
     },
+    {
+      id: 3,
+      title: "Responder o e-mail do José",
+      completed: true,
+    },
+    {
+      id: 4,
+      title: "Comprar cebola",
+      completed: false,
+    },
   ]);
-
-  // useEffect(() => {
-  //   const fetchTasks = async () => {
-  //     const { data } = await axios.get(
-  //       "https://jsonplaceholder.typicode.com/todos"
-  //     );
-  //     setTask(data);
-  //     console.log(tasks)
-  //   };
-  //   fetchTasks();
-  // }, []);
 
   const handleTaskClick = (taskId) => {
     const newTasks = tasks.map((task) => {
